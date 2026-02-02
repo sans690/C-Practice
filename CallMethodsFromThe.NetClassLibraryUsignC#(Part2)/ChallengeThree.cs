@@ -10,7 +10,7 @@ class ChallengeThree
         {
             if (orderID.StartsWith("B"))
             {
-                Console.WriteLine($"The order id starts with B: {orderID}");
+                Console.WriteLine(orderID);
             }
         }
     }
