@@ -18,7 +18,7 @@ This C# console application is designed to:
     Emma:           85.6    B
     Logan:          91.2    A-
 */
-using System.Runtime.CompilerServices;
+
 
 int examAssignments = 5;
 
@@ -82,20 +82,15 @@ foreach (string name in studentNames)
 
     int sumAssignmentScores = 0;
 
-    decimal currentStudentGrade = 0;
-
     int gradedAssignments = 0;
 
-
     int sumExamScores = 0;
-
-    decimal currentStudentExamGrade;
 
     foreach (int score in studentExamScores)
     {
         sumExamScores += score;
     }
-    currentStudentExamGrade = (decimal)sumExamScores / examAssignments;
+    decimal currentStudentExamGrade = (decimal)sumExamScores / examAssignments;
 
 
     /* 
@@ -111,10 +106,11 @@ foreach (string name in studentNames)
 
         else
             sumAssignmentScores += score / 10;
+
     }
 
+    decimal currentStudentGrade = (decimal)(sumAssignmentScores) / examAssignments;
 
-    currentStudentGrade = (decimal)(sumAssignmentScores) / examAssignments;
 
     if (currentStudentGrade >= 97)
         currentStudentLetterGrade = "A+";
@@ -158,9 +154,9 @@ foreach (string name in studentNames)
     // Student         Grade
     // Sophia:         92.2    A-
 
-    Console.WriteLine($"{currentStudent}\t\t{currentStudentExamGrade}\t\t{currentStudentGrade}\t{currentStudentLetterGrade}");
+    decimal extraCredit = currentStudentGrade - currentStudentExamGrade;
+    Console.WriteLine($"{currentStudent}\t\t{currentStudentExamGrade}\t\t{currentStudentGrade}\t{currentStudentLetterGrade}\t({extraCredit} pts)");
 }
-decimal extraCredit = 
 
 // required for running in VS Code (keeps the Output windows open to view results)
 Console.WriteLine("\n\rPress the Enter key to continue");
