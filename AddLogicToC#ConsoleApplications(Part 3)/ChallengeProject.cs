@@ -216,6 +216,7 @@ do
                 } while (validEntry == false);
 
 
+
                 // get a description of the pet's personality - animalPersonalityDescription can be blank.
                 do
                 {
@@ -302,13 +303,64 @@ do
                     while (validEntry == false);
                     ourAnimals[i, 2] = $"Age: {readResult}";
                 }
-            }
 
+                if (ourAnimals[i, 4] == "Physical description: " && ourAnimals[i, 0] != "ID #: ")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a physical description for {ourAnimals[i, 0]} (size, color, gender, weight, housebroken)");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            readResult = readResult.Trim();
+                        }
+                        validEntry = !string.IsNullOrWhiteSpace(readResult);
+                        ourAnimals[i, 4] = animalPhysicalDescription = $"Physical description: {readResult}";
+                    } while (!validEntry);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Age and physical description fields are complete for all of our friends.");
+            Console.WriteLine("Press the Enter key to continue.");
+            readResult = Console.ReadLine();
             break;
 
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
-            Console.WriteLine("Challenge Project - please check back soon to see progress.");
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 3] == "Nickname: " && ourAnimals[i, 0] != "ID #: ")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a nickname for {ourAnimals[i, 0]}");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            readResult = readResult.Trim();
+                        }
+                        validEntry = !string.IsNullOrWhiteSpace(readResult);
+                        ourAnimals[i, 3] = animalNickname = $"Nickname: {readResult}";
+                    } while (!validEntry);
+                }
+
+                if (ourAnimals[i, 5] == "Personality: " && ourAnimals[i, 0] != "ID #: ")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a personality description for {ourAnimals[i, 0]} (likes or dislikes, tricks, energy level)");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            readResult = readResult.Trim();
+                        }
+                        validEntry = !string.IsNullOrWhiteSpace(readResult);
+                        ourAnimals[i, 5] = animalPersonalityDescription = $"Personality: {readResult}";
+                    } while (!validEntry);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Nickname and personality description fields are complete for all of our friends.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
