@@ -88,7 +88,6 @@ class GuidedProjectOne
             ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
             ourAnimals[i, 6] = "Suggested Donation: " + suggestedDonation;
 
-
             if (!decimal.TryParse(suggestedDonation, out decimalDonation))
             {
                 decimalDonation = 45.00m;
@@ -137,8 +136,39 @@ class GuidedProjectOne
 
                 case "2":
                     // Display all dogs with a specified characteristic
-                    Console.WriteLine("\nUNDER CONSTRUCTION - please check back next month to see progress.");
-                    Console.WriteLine("Press the Enter key to continue.");
+                    string dogCharacteristic = "";
+                    while (dogCharacteristic == "")
+                    {
+                        Console.WriteLine($"\nEnter one desired dog characteristics to search for");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            dogCharacteristic = readResult.ToLower().Trim();
+                        }
+                    }
+                    string dogDescription = "";
+                    bool noMatchesDog = true;
+
+                    // #6 loop through the ourAnimals array to search for matching animals
+                    for (int i = 0; i < maxPets; i++)
+                    {
+                        if (ourAnimals[i, 1].Contains("dog"))
+                        {
+                            // #7 Search combined descriptions and report results
+                            dogDescription = ourAnimals[i, 4] + "\n" + ourAnimals[i, 5];
+                            if (dogDescription.Contains(dogCharacteristic))
+                            {
+                                Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a match!");
+                                Console.WriteLine(dogDescription);
+                                noMatchesDog = false;
+                            }
+                        }
+                    }
+                    if (noMatchesDog)
+                    {
+                        Console.WriteLine("\nNone of our dogs are a match found for: " + dogCharacteristic);
+                    }
+                    Console.WriteLine("\nPress the Enter key to continue.");
                     readResult = Console.ReadLine();
                     break;
 
