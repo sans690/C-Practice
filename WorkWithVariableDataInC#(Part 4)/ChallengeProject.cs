@@ -167,7 +167,6 @@ class ChallengeProject
 
                     // #4 update to "rotating" animation with countdown
                     string[] searchingIcons = { ".  ", ".. ", "..." };
-
                     // loop ourAnimals array to search for matching animals
                     for (int i = 0; i < maxPets; i++)
                     {
@@ -179,11 +178,21 @@ class ChallengeProject
                             for (int j = 5; j > -1; j--)
                             {
                                 // #5 update "searching" message to show countdown 
-                                foreach (string icon in searchingIcons)
+                                string[] termToSearch = multiCharacteristics.Length > 0 ? multiCharacteristics : singleCharacteristic;
+                                int countdown = -1; // point to which we should stop
+                                string[] lines = { "| ", "/ ", "\\ " };
+
+                                foreach (string term in termToSearch)
                                 {
-                                    Console.Write($"\rsearching our dog {ourAnimals[i, 3]} for {dogCharacteristic} {icon}");
-                                    Thread.Sleep(250);
-                                    Console.Write($"\r{new String(' ', Console.BufferWidth)}");
+                                    for (int k = 2; k > countdown; k--)
+                                    {
+                                        foreach (string icon in searchingIcons)
+                                        {
+                                            Console.Write($"\rsearching our dog {ourAnimals[i, 3]} for {icon}{term}  {lines[k]}{k}");
+                                            Thread.Sleep(250);
+                                            Console.Write($"\r{new String(' ', Console.BufferWidth)}");
+                                        }
+                                    }
                                 }
                             }
 
@@ -196,15 +205,14 @@ class ChallengeProject
                                 {
                                     thisDogIsMatch = true;
                                     matchedTerm = characteristic;
-                                    break;
+                                    Console.WriteLine($"Our dog {ourAnimals[i, 3]} is a {matchedTerm} match!\n");
                                 }
                             }
 
                             if (thisDogIsMatch)
                             {
                                 noMatchesDog = false;
-                                Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a {matchedTerm} match!");
-                                Console.WriteLine($"{ourAnimals[i, 3]} \n{ourAnimals[i, 4]} \n{ourAnimals[i, 5]}");
+                                Console.WriteLine($"{ourAnimals[i, 3]} ({ourAnimals[i, 0]})\n{ourAnimals[i, 4]}\n{ourAnimals[i, 5]}");
                                 continue;
                             }
 
@@ -213,8 +221,8 @@ class ChallengeProject
                                 if (dogDescription.Contains(characteristic))
                                 {
                                     noMatchesDog = false;
-                                    Console.WriteLine($"\nOur dog {ourAnimals[i, 3]} is a match!");
-                                    Console.WriteLine($"{ourAnimals[i, 3]} \n{ourAnimals[i, 4]} \n{ourAnimals[i, 5]}");
+                                    Console.WriteLine($"Our dog {ourAnimals[i, 3]} is a match!\n");
+                                    Console.WriteLine($"{ourAnimals[i, 3]} ({ourAnimals[i, 0]})\n{ourAnimals[i, 4]}\n{ourAnimals[i, 5]}");
                                     break;
                                 }
                             }
