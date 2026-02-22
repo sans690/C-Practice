@@ -54,20 +54,3 @@ class ChallengeFour
         return $"{emailName}@{domain}";
     }
 }
-
-
-
-
-
-
-
-
-// assignDomain(firstNameCorporate);
-
-// for (int i = 0; i < external.GetLength(0); i++)
-// {
-//     string firstNameExternal = external[i, 0];
-//     string lastNameExternal = external[i, 1];
-// }
-
-
